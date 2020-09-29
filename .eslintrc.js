@@ -10,7 +10,16 @@ module.exports = {
   settings: {
     react: {
       version: 'detect'
-    }
+    },
+    'import/resolver': {
+      node: {
+        moduleDirectory: ['node_modules', 'src'],
+      },
+      alias: {
+        map: [['@src', './src']],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+      },
+    },
   },
   env: {
     browser: true,
