@@ -32,6 +32,15 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-postcss`,
-    `gatsby-plugin-sass`
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          '@src': 'src',
+        },
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+      },
+    },
   ],
-}
+};
