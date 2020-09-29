@@ -42,5 +42,6 @@ module.exports = {
         extensions: ['js', 'jsx', 'ts', 'tsx'],
       },
     },
+    `gatsby-plugin-svgr`
   ],
 };
