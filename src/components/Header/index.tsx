@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'gatsby';
 
-import { ReactComponent as SidebarIcon } from '@/src/images/sidebar-icon.1dc3573e.svg';
+import { ReactComponent as SidebarIcon } from '@src/images/sidebar-icon.1dc3573e.svg';
 
 interface HeaderProps {
   siteTitle?: string;
