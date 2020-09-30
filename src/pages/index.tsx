@@ -6,7 +6,9 @@ import Image from '../components/image';
 import SEO from '../components/seo';
 import Button from '../components/Button';
 
-const IndexPage = () => (
+interface HomePageProps {}
+
+const HomePage: React.FunctionComponent<HomePageProps> = () => (
   <Layout>
     <SEO title='Home' />
     <h1>Hi people</h1>
@@ -24,4 +26,4 @@ const IndexPage = () => (
   </Layout>
 );
 
-export default IndexPage;
+export default HomePage;
