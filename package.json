@@ -5,6 +5,8 @@
   "version": "0.1.0",
   "author": "KhaLe <kha.le@hdwebsoft>",
   "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "@emotion/styled": "^10.0.27",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@svgr/webpack": "^5.4.0",
@@ -39,6 +41,7 @@
     "@storybook/addon-links": "^6.0.22",
     "@storybook/react": "^6.0.22",
     "babel-loader": "^8.1.0",
+    "babel-plugin-emotion": "^10.0.33",
     "prettier": "2.1.1",
     "react-is": "^16.13.1",
     "typescript-plugin-tw-template": "^2.1.0"
