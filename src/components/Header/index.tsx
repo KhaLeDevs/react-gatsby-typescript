@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Link } from 'gatsby';
 
-const SidebarIcon = require('@/src/images/sidebar-icon.1dc3573e.svg').default;
+import { ReactComponent as SidebarIcon } from '@/src/images/sidebar-icon.1dc3573e.svg';
 
 interface HeaderProps {
   siteTitle?: string;
@@ -15,15 +16,15 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => (
       alt='menu'
     />
     <SidebarIcon className='menu-icon' />
-    <a href='./welcome.html'>
+    <Link to='/welcome'>
       <span className='title'>
         Personalised Healthcare-Enabled Patient Journey
       </span>
       <span className='mobile-title'>PHC Systems Map</span>
-    </a>
-    <a href='./welcome.html'>
+    </Link>
+    <Link to='/welcome'>
       <img className='logo' src='../images/logo.2c6efde3.svg' alt='logo' />
-    </a>
+    </Link>
   </div>
 );
 

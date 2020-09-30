@@ -9,7 +9,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Index from '@src/components/Header';
+import Header from '@src/components/Header';
 import './css/layout.css';
 import './index.scss';
 
@@ -28,7 +28,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }: any) => {
 
   return (
     <>
-      <Index siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
           margin: `0 auto`,
