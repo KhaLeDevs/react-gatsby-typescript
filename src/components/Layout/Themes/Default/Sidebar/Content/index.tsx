@@ -2,6 +2,8 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from '@reach/router';
 
+import SearchIcon from '@src/images/search-icon.30da9b45.svg';
+
 interface SidebarContentProps {}
 const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
   return (
@@ -30,7 +32,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
           `}
         >
           <img
-            src='../images/search-icon.30da9b45.svg'
+            src={SearchIcon}
             alt='search icon'
             css={css`
               width: 23px;

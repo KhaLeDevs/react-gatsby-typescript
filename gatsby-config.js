@@ -49,5 +49,6 @@ module.exports = {
         prefixes: [`/welcome/*`],
       },
     },
+    `gatsby-plugin-emotion`
   ],
 };
