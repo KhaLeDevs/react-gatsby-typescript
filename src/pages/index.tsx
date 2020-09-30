@@ -1,29 +1,18 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
-import Image from '../components/image';
-import SEO from '../components/seo';
-import Button from '../components/Button';
+import Home from '@src/containers/Home';
 
-interface HomePageProps {}
+interface HomePageProps {
+  location: any;
+}
 
-const HomePage: React.FunctionComponent<HomePageProps> = () => (
-  <Layout>
-    <SEO title='Home' />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <div>
-      Button
-      <Button />
-    </div>
-    <Link to='/page-2/'>Go to page 2</Link> <br />
-    <Link to='/using-typescript/'>Go to "Using TypeScript"</Link>
-  </Layout>
-);
+const Index: React.FunctionComponent<HomePageProps> = ({ location }) => {
+  return (
+    <Layout location={location}>
+      <Home location={location} />
+    </Layout>
+  );
+};
 
-export default HomePage;
+export default Index;

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 import { ReactComponent as SidebarIcon } from '@src/images/sidebar-icon.1dc3573e.svg';
+import Logo from '@src/images/logo.2c6efde3.svg';
 
 interface HeaderProps {
   siteTitle?: string;
@@ -10,11 +11,6 @@ interface HeaderProps {
 
 const Header: React.FunctionComponent<HeaderProps> = ({}) => (
   <div className='header d-flex align-items-center justify-content-between'>
-    <img
-      className='menu-icon'
-      src='../images/sidebar-icon.1dc3573e.svg'
-      alt='menu'
-    />
     <SidebarIcon className='menu-icon' />
     <Link to='/welcome'>
       <span className='title'>
@@ -23,7 +19,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => (
       <span className='mobile-title'>PHC Systems Map</span>
     </Link>
     <Link to='/welcome'>
-      <img className='logo' src='../images/logo.2c6efde3.svg' alt='logo' />
+      <img className='logo' src={Logo} alt='logo' />
     </Link>
   </div>
 );

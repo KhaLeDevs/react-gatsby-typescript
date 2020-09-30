@@ -1,14 +1,19 @@
 import React from 'react';
-import Header from "@src/components/Header"
+import Layout from '@src/components/Layout';
+import Welcome from '@src/containers/Welcome';
 
-interface WelcomeProps {}
+interface WelcomePageProps {
+  location: any;
+}
 
-const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
+const WelcomePage: React.FunctionComponent<WelcomePageProps> = ({
+  location,
+}) => {
   return (
-    <div className="root">
-      <Header />
-    </div>
+    <Layout location={location}>
+      <Welcome />
+    </Layout>
   );
 };
 
-export default Welcome;
+export default WelcomePage;

@@ -1,13 +1,7 @@
-@import './css/layout.css';
-@import './css/basic.css';
-@import './css/main.css';
-@import './css/custom.css';
-
-@tailwind base;
-
-@tailwind components;
-
-@tailwind utilities;
+@import './styles/layout.css';
+@import './styles/basic.css';
+@import './styles/main.css';
+@import './styles/custom.css';
 
 button {
   color: green;

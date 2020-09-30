@@ -42,6 +42,12 @@ module.exports = {
         extensions: ['js', 'jsx', 'ts', 'tsx'],
       },
     },
-    `gatsby-plugin-svgr`
+    `gatsby-plugin-svgr`,
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: {
+        prefixes: [`/welcome/*`],
+      },
+    },
   ],
 };

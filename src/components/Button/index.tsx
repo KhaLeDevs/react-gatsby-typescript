@@ -69,7 +69,7 @@ const IButton: React.FunctionComponent<ButtonProps> = () => {
         <div>
           <input
             accept='image/*'
-            className=''
+            className='hidden'
             id='contained-button-file'
             multiple
             type='file'
@@ -81,7 +81,7 @@ const IButton: React.FunctionComponent<ButtonProps> = () => {
           </label>
           <input
             accept='image/*'
-            className=''
+            className='hidden'
             id='icon-button-file'
             type='file'
           />
