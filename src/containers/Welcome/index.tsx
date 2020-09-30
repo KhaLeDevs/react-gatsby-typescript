@@ -7,7 +7,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
       <div className='background-map'>
-        <img src='../images/map-background.0b2cc01f.png' alt='background map' />
+        <img src={require('@src/images/map-background.0b2cc01f.png')} alt='background map' />
         <div className='d-flex align-items-center custom-dropdown diagnosis-dropdown'>
           <div
             className='d-flex align-items-center justify-content-center drop-button'
@@ -23,7 +23,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -85,7 +85,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -144,7 +144,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -192,7 +192,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -243,7 +243,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -297,7 +297,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -350,7 +350,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
             `}
           >
             <img
-              src='../images/arrow-dropdown.2ed7f2a2.svg'
+              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
               alt='dropdown icon'
               css={css`
                 width: 13px;
@@ -453,7 +453,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 `}
               >
                 <video width='100%' controls>
-                  <source src='../images/phc.c8c8ef39.mp4' />
+                  <source src={require('@src/images/phc.c8c8ef39.mp4')} />
                 </video>
               </div>
               <br />

@@ -38,6 +38,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               width: 23px;
               margin-right: 2px;
               margin-left: 1px;
+              margin-bottom: 0;
             `}
           />
         </div>
@@ -125,7 +126,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
             >
               <Link
                 className='d-flex align-items-center nav-menu-title'
-                to='./welcome.html'
+                to='/welcome'
                 css={css`
                   height: 40px;
                   font-size: 18px;

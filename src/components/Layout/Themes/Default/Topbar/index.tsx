@@ -31,6 +31,7 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
             css={css`
               width: 10px;
               position: absolute;
+              margin-bottom: 0;
             `}
           />
         </div>
