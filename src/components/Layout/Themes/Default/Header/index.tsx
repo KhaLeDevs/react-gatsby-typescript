@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 
 import { ReactComponent as SidebarIcon } from '@src/images/sidebar-icon.1dc3573e.svg';
 import Logo from '@src/images/logo.2c6efde3.svg';
+import { css } from "@emotion/core"
 
 interface HeaderProps {
   siteTitle?: string;
@@ -19,7 +20,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => (
       <span className='mobile-title'>PHC Systems Map</span>
     </Link>
     <Link to='/welcome'>
-      <img className='logo' src={Logo} alt='logo' />
+      <img css={css`margin-bottom: 0; max-width: inherit;`} className='logo' src={Logo} alt='logo' />
     </Link>
   </div>
 );

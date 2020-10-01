@@ -4,10 +4,16 @@ import { css } from '@emotion/core';
 interface WelcomeProps {}
 
 const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
+  const [modalClass, setModalClass] = React.useState('');
+
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
       <div className='background-map'>
-        <img src={require('@src/images/map-background.0b2cc01f.png')} alt='background map' />
+        <img
+          css={css`max-width: inherit`}
+          src={require('@src/images/map-background.0b2cc01f.png')}
+          alt='background map'
+        />
         <div className='d-flex align-items-center custom-dropdown diagnosis-dropdown'>
           <div
             className='d-flex align-items-center justify-content-center drop-button'
@@ -29,6 +35,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -44,7 +51,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='future-patient-journey/diagnosis/overview.html'>
@@ -91,6 +98,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -106,7 +114,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='future-patient-journey/monitoring/overview.html'>
@@ -150,6 +158,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -165,7 +174,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='future-patient-journey/data/overview.html'>Overview</a>
@@ -198,6 +207,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -213,7 +223,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='future-patient-journey/care/overview.html'>Overview</a>
@@ -249,6 +259,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -264,7 +275,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='future-patient-journey/access/overview.html'>Overview</a>
@@ -303,6 +314,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -318,7 +330,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='systems-enablers/roches-initiatives/context.html'>
@@ -356,6 +368,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 width: 13px;
                 position: absolute;
                 margin-left: 1px;
+                margin-bottom: 0;
               `}
             />
           </div>
@@ -371,7 +384,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
           <div
             className='custom-dropdown-list position-absolute'
             css={css`
-              display: none;
+              display: none !important;
             `}
           >
             <a href='systems-enablers/partner/stakeholders.html'>
@@ -386,7 +399,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
         </div>
       </div>
       <div
-        className='custom-modal-wrapper'
+        className={`${modalClass} custom-modal-wrapper`}
         css={css`
           display: flex;
           height: calc(100vh - 112px);
@@ -394,7 +407,11 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
       >
         <div className='custom-modal-container phc-container'>
           <div className='custom-modal-header d-flex align-items-center justify-content-start'>
-            <button type='button' className='btn btn-primary close-button'>
+            <button
+              type='button'
+              className='btn btn-primary close-button'
+              onClick={() => setModalClass('hidden')}
+            >
               <span>×</span>
             </button>
           </div>

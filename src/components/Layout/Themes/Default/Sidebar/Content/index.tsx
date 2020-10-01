@@ -125,7 +125,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               `}
             >
               <Link
-                className='d-flex align-items-center nav-menu-title'
+                className='d-flex align-items-center nav-menu-title no-underline'
                 to='/welcome'
                 css={css`
                   height: 40px;
@@ -182,7 +182,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               `}
             >
               <Link
-                className='d-flex align-items-center nav-menu-title'
+                className='d-flex align-items-center nav-menu-title no-underline'
                 to='./future-patient-journey/index.html'
                 css={css`
                   height: 40px;
@@ -239,7 +239,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               `}
             >
               <Link
-                className='d-flex align-items-center nav-menu-title'
+                className='d-flex align-items-center nav-menu-title no-underline'
                 to='./systems-enablers/index.html'
                 css={css`
                   height: 40px;
@@ -296,7 +296,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               `}
             >
               <Link
-                className='d-flex align-items-center nav-menu-title'
+                className='d-flex align-items-center nav-menu-title no-underline'
                 to='./abbrevation.html'
                 css={css`
                   height: 40px;
@@ -353,7 +353,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
               `}
             >
               <Link
-                className='d-flex align-items-center nav-menu-title'
+                className='d-flex align-items-center nav-menu-title no-underline'
                 to='./acknowledgements.html'
                 css={css`
                   height: 40px;
