@@ -6,6 +6,7 @@ interface PageContentProps {}
 const PageContent: React.FunctionComponent<PageContentProps> = ({
   children,
 }) => {
+
   return (
     <div
       className='page-content'

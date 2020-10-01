@@ -6,6 +6,7 @@ import {
   customDropdownData,
 } from '@src/contants/CustomDropdown';
 import { LayoutContext } from "@src/components/Layout"
+import { useWindowDimensions } from "@src/hooks/useWindowDimensions"
 
 interface WelcomeProps {}
 
@@ -70,11 +71,12 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
 
 const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
   const [modalClass, setModalClass] = React.useState('');
-  const { isCollapse } = React.useContext(LayoutContext);
+  const { setIsCollapse } = React.useContext(LayoutContext);
+  const { width } = useWindowDimensions();
 
-  React.useEffect(() => {
-    console.log('isCollapse: ', isCollapse);
-  }, [isCollapse]);
+  const onClick = () => {
+    return width <= 800 && setIsCollapse(true);
+  }
 
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
@@ -95,7 +97,9 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
         css={css`
           display: flex;
           height: calc(100vh - 112px);
+          z-index: 51;
         `}
+        onClick={onClick}
       >
         <div className='custom-modal-container phc-container'>
           <div className='custom-modal-header d-flex align-items-center justify-content-start'>

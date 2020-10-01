@@ -1,3 +1,9 @@
+const screens = {
+  sm: 640,
+  md: 768,
+  lg: 920,
+};
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -7,6 +13,7 @@ module.exports = {
   target: 'relaxed',
   prefix: '',
   important: true,
+  screens,
   separator: ':',
   theme: {
     screens: {
