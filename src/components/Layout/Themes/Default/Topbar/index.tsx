@@ -2,9 +2,12 @@ import React from 'react';
 import { css } from '@emotion/core';
 
 import ArrowLeft from '@src/images/arrow-left.3689acfa.svg';
+import ArrowRight from '@src/images/arrow-right.0edc8883.svg';
 
 interface TopbarProps {}
 const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
+  const [isCollapse, setIsCollapse] = React.useState(false);
+
   return (
     <div
       className='top-bar d-flex align-items-center justify-content-center'
@@ -16,6 +19,7 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
       <div className='side-bar-header d-flex align-items-center'>
         <div
           className='d-flex align-items-center justify-content-center custom-button collapse-button'
+          onClick={() => setIsCollapse(!isCollapse)}
           css={css`
             width: 36px;
             height: 36px;
@@ -26,7 +30,7 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
           `}
         >
           <img
-            src={ArrowLeft}
+            src={isCollapse ? ArrowRight : ArrowLeft}
             alt='toggle from'
             css={css`
               width: 10px;
@@ -35,7 +39,7 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
             `}
           />
         </div>
-        <span>Collapse the Navigation</span>
+        <span>{isCollapse ? 'Open the Navigation' : 'Collapse the Navigation'}</span>
       </div>
       <span>Welcome</span>
     </div>

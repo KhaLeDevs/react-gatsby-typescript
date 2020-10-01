@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import './styles/layout.css';
 import './styles/tailwind.css';
@@ -16,11 +16,33 @@ interface LayoutProps {
   location: any;
 }
 
+interface UseLayoutOptions {}
+
+interface LayoutContextOptions {
+  isCollapse: boolean;
+  setIsCollapse: Dispatch<SetStateAction<boolean>>;
+}
+
+const LayoutContext = React.createContext<LayoutContextOptions>(
+  {} as LayoutContextOptions
+);
+
+const useLayout = ({}: UseLayoutOptions): LayoutContextOptions => {
+  const [isCollapse, setIsCollapse] = React.useState(false);
+
+  return {
+    isCollapse,
+    setIsCollapse,
+  };
+};
+
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }: any) => {
+  const layoutOption = useLayout({});
+
   return (
-    <>
+    <LayoutContext.Provider value={layoutOption}>
       <Theme>{children}</Theme>
-    </>
+    </LayoutContext.Provider>
   );
 };
 

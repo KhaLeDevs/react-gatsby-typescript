@@ -1,402 +1,87 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { Link } from '@reach/router';
+import {
+  ICustomDropdownItem,
+  customDropdownData,
+} from '@src/contants/CustomDropdown';
 
 interface WelcomeProps {}
 
+interface CustomDropdownProps {
+  data: ICustomDropdownItem;
+  index: number;
+}
+
+const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
+  data,
+}) => {
+  const { name, title, icon, child, color } = data;
+
+  return (
+    <div className={`d-flex align-items-center custom-dropdown ${name}`}>
+      <div
+        className='d-flex align-items-center justify-content-center drop-button'
+        css={css`
+          width: 36px;
+          height: 36px;
+          background: ${color};
+          border-radius: 20px;
+          box-shadow: black 0px 0px 3px 0px;
+          cursor: pointer;
+          position: absolute;
+          left: -18px;
+        `}
+      >
+        <img
+          src={icon}
+          alt='dropdown icon'
+          css={css`
+            width: 13px;
+            position: absolute;
+            margin-left: 1px;
+            margin-bottom: 0;
+          `}
+        />
+      </div>
+      <div
+        className='dropdown-title d-flex align-items-center'
+        css={css`
+          border: 3px solid ${color};
+          color: ${color};
+        `}
+      >
+        <span>{title}</span>
+      </div>
+      <div
+        className='custom-dropdown-list position-absolute'
+        css={css`
+          display: none !important;
+        `}
+      >
+        {child.map(({ name, route }) => (
+          <Link to={route}>{name}</Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
   const [modalClass, setModalClass] = React.useState('');
-
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
       <div className='background-map'>
         <img
-          css={css`max-width: inherit`}
+          css={css`
+            max-width: inherit;
+          `}
           src={require('@src/images/map-background.0b2cc01f.png')}
           alt='background map'
         />
-        <div className='d-flex align-items-center custom-dropdown diagnosis-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(0, 102, 204);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(0, 102, 204);
-              color: rgb(0, 102, 204);
-            `}
-          >
-            <span>Early Personalised Diagnosis</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='future-patient-journey/diagnosis/overview.html'>
-              Overview
-            </a>
-            <a href='future-patient-journey/diagnosis/diagnostics.html'>
-              Diagnostics
-            </a>
-            <a href='future-patient-journey/diagnosis/genomics.html'>
-              Genomics
-            </a>
-            <a href='future-patient-journey/diagnosis/advanced-imaging.html'>
-              Advanced Imaging
-            </a>
-            <a href='future-patient-jou rney/diagnosis/digital-pathology.html'>
-              Digital Pathology
-            </a>
-            <a href='future-patient-journey/diagnosis/cds-systems.html'>
-              CDS Systems
-            </a>
-            <a href='future-patient-journey/diagnosis/digital-health.html'>
-              Digital Health and SaMD
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown monitoring-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(0, 102, 204);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(0, 102, 204);
-              color: rgb(0, 102, 204);
-            `}
-          >
-            <span>Personalised Remote Monitoring &amp; Care</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='future-patient-journey/monitoring/overview.html'>
-              Overview
-            </a>
-            <a href='future-patient-journey/monitoring/diagnostics.html'>
-              Diagnostics
-            </a>
-            <a href='future-patient-journey/monitoring/genomics.html'>
-              Genomics
-            </a>
-            <a href='future-patient-journey/monitoring/advanced-imaging.html'>
-              Advanced Imaging
-            </a>
-            <a href='future-patient-journey/monitoring/cds-systems.html'>
-              CDS Systems
-            </a>
-            <a href='future-patient-journey/monitoring/digital-health.html'>
-              Digital Health and SaMD
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown data-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(0, 102, 204);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(0, 102, 204);
-              color: rgb(0, 102, 204);
-            `}
-          >
-            <span>Data &amp; Insights</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='future-patient-journey/data/overview.html'>Overview</a>
-            <a href='future-patient-journey/data/real-world-data.html'>
-              Real-World Data
-            </a>
-            <a href='future-patient-journey/data/advanced-analytics.html'>
-              Advanced Analytics
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown care-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(0, 102, 204);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(0, 102, 204);
-              color: rgb(0, 102, 204);
-            `}
-          >
-            <span>Personalised Care Plan</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='future-patient-journey/care/overview.html'>Overview</a>
-            <a href='future-patient-journey/care/diagnostics.html'>
-              Diagnostics
-            </a>
-            <a href='future-patient-journey/care/cds-systems.html'>
-              CDS Systems
-            </a>
-            <a href='future-patient-journey/care/digital-health.html'>
-              Digital Health and SaMD
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown access-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(0, 102, 204);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(0, 102, 204);
-              color: rgb(0, 102, 204);
-            `}
-          >
-            <span>Rapid Access to Personalised Interventions</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='future-patient-journey/access/overview.html'>Overview</a>
-            <a href='future-patient-journey/access/diagnostics.html'>
-              Diagnostics
-            </a>
-            <a href='future-patient-journey/access/cds-systems.html'>
-              CDS Systems
-            </a>
-            <a href='future-patient-journey/access/digital-health.html'>
-              Digital Health and SaMD
-            </a>
-            <a href='future-patient-journey/access/value-based-healthcare.html'>
-              Value-based Healthcare
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown roche-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(237, 139, 0);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(237, 139, 0);
-              color: rgb(237, 139, 0);
-            `}
-          >
-            <span>Roche Initiatives</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='systems-enablers/roches-initiatives/context.html'>
-              Context
-            </a>
-            <a href='systems-enablers/roches-initiatives/showcases.html'>
-              Showcases
-            </a>
-            <a href='systems-enablers/roches-initiatives/shining-towers.html'>
-              Shining Towers
-            </a>
-            <a href='systems-enablers/roches-initiatives/examples.html'>
-              Examples
-            </a>
-          </div>
-        </div>
-        <div className='d-flex align-items-center custom-dropdown partners-dropdown'>
-          <div
-            className='d-flex align-items-center justify-content-center drop-button'
-            css={css`
-              width: 36px;
-              height: 36px;
-              background: rgb(237, 139, 0);
-              border-radius: 20px;
-              box-shadow: black 0px 0px 3px 0px;
-              cursor: pointer;
-              position: absolute;
-              left: -18px;
-            `}
-          >
-            <img
-              src={require('@src/images/arrow-dropdown.2ed7f2a2.svg').default}
-              alt='dropdown icon'
-              css={css`
-                width: 13px;
-                position: absolute;
-                margin-left: 1px;
-                margin-bottom: 0;
-              `}
-            />
-          </div>
-          <div
-            className='dropdown-title d-flex align-items-center'
-            css={css`
-              border: 3px solid rgb(237, 139, 0);
-              color: rgb(237, 139, 0);
-            `}
-          >
-            <span>Partners</span>
-          </div>
-          <div
-            className='custom-dropdown-list position-absolute'
-            css={css`
-              display: none !important;
-            `}
-          >
-            <a href='systems-enablers/partner/stakeholders.html'>
-              Stakeholders
-            </a>
-            <a href='systems-enablers/partner/policy.html'>Policy</a>
-            <a href='systems-enablers/partner/phc-it.html'>PHC IX/Technology</a>
-            <a href='systems-enablers/partner/patient-partnerships.html'>
-              Patient Partnerships
-            </a>
-          </div>
-        </div>
+        {customDropdownData.map((data, index) => (
+          <CustomDropdown data={data} index={index} key={index} />
+        ))}
       </div>
       <div
         className={`${modalClass} custom-modal-wrapper`}
