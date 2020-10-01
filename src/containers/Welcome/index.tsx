@@ -5,6 +5,7 @@ import {
   ICustomDropdownItem,
   customDropdownData,
 } from '@src/contants/CustomDropdown';
+import { LayoutContext } from "@src/components/Layout"
 
 interface WelcomeProps {}
 
@@ -59,8 +60,8 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
           display: none !important;
         `}
       >
-        {child.map(({ name, route }) => (
-          <Link to={route}>{name}</Link>
+        {child.map(({ name, route }, index) => (
+          <Link to={route} key={index}>{name}</Link>
         ))}
       </div>
     </div>
@@ -69,6 +70,12 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
 
 const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
   const [modalClass, setModalClass] = React.useState('');
+  const { isCollapse } = React.useContext(LayoutContext);
+
+  React.useEffect(() => {
+    console.log('isCollapse: ', isCollapse);
+  }, [isCollapse]);
+
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
       <div className='background-map'>
