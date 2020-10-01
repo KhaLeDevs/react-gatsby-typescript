@@ -2,8 +2,8 @@ import React from 'react';
 import { css } from '@emotion/core';
 import SidebarFooter from '@src/components/Layout/Themes/Default/Sidebar/Footer';
 import SidebarContent from '@src/components/Layout/Themes/Default/Sidebar/Content';
-import { LayoutContext } from "@src/components/Layout"
-import { useWindowDimensions } from "@src/hooks/useWindowDimensions"
+import { LayoutContext } from '@src/components/Layout';
+import { useWindowDimensions } from '@src/hooks/useWindowDimensions';
 
 interface SidebarProps {}
 
@@ -13,7 +13,7 @@ const Sidebar: React.FunctionComponent<SidebarProps> = ({}) => {
 
   const onClick = () => {
     return width <= 800 && setIsCollapse(true);
-  }
+  };
 
   return (
     <div className='side-bar-wrapper'>

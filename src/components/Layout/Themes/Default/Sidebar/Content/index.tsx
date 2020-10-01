@@ -3,9 +3,26 @@ import { css } from '@emotion/core';
 import { Link } from '@reach/router';
 
 import SearchIcon from '@src/images/search-icon.30da9b45.svg';
+import { LayoutContext } from '@src/components/Layout';
+import { useOnClickOutside } from "@src/hooks/useOnClickOutside"
 
-interface SidebarContentProps {}
-const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
+interface SidebarContentProps {
+}
+
+const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({
+}) => {
+  const [active, setActive] = React.useState(false);
+  const { isCollapse } = React.useContext(LayoutContext);
+  const ref = useOnClickOutside(() => setActive(false));
+
+  const onToggleSearch = () => {
+    if (isCollapse) {
+      return;
+    }
+
+    setActive(!active);
+  };
+
   return (
     <div className='side-bar-content'>
       <div
@@ -18,6 +35,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
           cursor: pointer;
           transition: all 0.3s ease 0s;
         `}
+        onClick={onToggleSearch}
       >
         <div
           className='custom-button d-flex align-items-center justify-content-center'
@@ -77,11 +95,11 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = () => {
           left: -60px;
           z-index: 3;
         `}
-      ></div>
+      />
       <div
         className='search-result'
         css={css`
-          left: -318px;
+          left: ${active ? '60px' : '-318px'};
         `}
       >
         <div className='results-container'></div>
