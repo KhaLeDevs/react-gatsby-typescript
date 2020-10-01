@@ -5,8 +5,6 @@ import {
   ICustomDropdownItem,
   customDropdownData,
 } from '@src/contants/CustomDropdown';
-import { LayoutContext } from "@src/components/Layout"
-import { useWindowDimensions } from "@src/hooks/useWindowDimensions"
 
 interface WelcomeProps {}
 
@@ -18,10 +16,18 @@ interface CustomDropdownProps {
 const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
   data,
 }) => {
+  const [isShow, setIsShow] = React.useState(false);
   const { name, title, icon, child, color } = data;
 
+  const onClick = () => {
+    setIsShow(!isShow);
+  };
+
   return (
-    <div className={`d-flex align-items-center custom-dropdown ${name}`}>
+    <div
+      className={`d-flex align-items-center custom-dropdown ${name}`}
+      onClick={onClick}
+    >
       <div
         className='d-flex align-items-center justify-content-center drop-button'
         css={css`
@@ -43,6 +49,8 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
             position: absolute;
             margin-left: 1px;
             margin-bottom: 0;
+
+            ${isShow ? `transform: rotate(90deg);` : `transform: rotate(0deg);`}
           `}
         />
       </div>
@@ -58,11 +66,25 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
       <div
         className='custom-dropdown-list position-absolute'
         css={css`
-          display: none !important;
+          'margin-left': '1px';
+          'margin-top': '0px';
+          ${
+            isShow
+              ? `
+              display: flex !important;
+              z-index: 100;
+            `
+              : `
+              display: none !important;
+              z-index: 0;
+          `
+          }
         `}
       >
         {child.map(({ name, route }, index) => (
-          <Link to={route} key={index}>{name}</Link>
+          <Link to={route} key={index}>
+            {name}
+          </Link>
         ))}
       </div>
     </div>
@@ -71,12 +93,6 @@ const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
 
 const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
   const [modalClass, setModalClass] = React.useState('');
-  const { setIsCollapse } = React.useContext(LayoutContext);
-  const { width } = useWindowDimensions();
-
-  const onClick = () => {
-    return width <= 800 && setIsCollapse(true);
-  }
 
   return (
     <div className='welcome page-wrapper d-flex align-items-center justify-content-center'>
@@ -97,9 +113,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
         css={css`
           display: flex;
           height: calc(100vh - 112px);
-          z-index: 51;
         `}
-        onClick={onClick}
       >
         <div className='custom-modal-container phc-container'>
           <div className='custom-modal-header d-flex align-items-center justify-content-start'>
