@@ -3,10 +3,11 @@ import { css } from '@emotion/core';
 
 import ArrowLeft from '@src/images/arrow-left.3689acfa.svg';
 import ArrowRight from '@src/images/arrow-right.0edc8883.svg';
+import { LayoutContext } from '@src/components/Layout';
 
 interface TopbarProps {}
 const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
-  const [isCollapse, setIsCollapse] = React.useState(false);
+  const { isCollapse, setIsCollapse } = React.useContext(LayoutContext);
 
   return (
     <div
@@ -39,7 +40,9 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
             `}
           />
         </div>
-        <span>{isCollapse ? 'Open the Navigation' : 'Collapse the Navigation'}</span>
+        <span>
+          {isCollapse ? 'Open the Navigation' : 'Collapse the Navigation'}
+        </span>
       </div>
       <span>Welcome</span>
     </div>

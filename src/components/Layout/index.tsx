@@ -23,7 +23,7 @@ interface LayoutContextOptions {
   setIsCollapse: Dispatch<SetStateAction<boolean>>;
 }
 
-const LayoutContext = React.createContext<LayoutContextOptions>(
+export const LayoutContext = React.createContext<LayoutContextOptions>(
   {} as LayoutContextOptions
 );
 
@@ -36,7 +36,7 @@ const useLayout = ({}: UseLayoutOptions): LayoutContextOptions => {
   };
 };
 
-const Layout: React.FunctionComponent<LayoutProps> = ({ children }: any) => {
+const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   const layoutOption = useLayout({});
 
   return (
