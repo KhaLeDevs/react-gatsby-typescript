@@ -8,10 +8,23 @@ import SearchIcon from '@src/images/search-icon.30da9b45.svg';
 import { LayoutContext } from '@src/components/Layout';
 import { useOnClickInsideWithTarget } from '@src/hooks/useOnClickOutside';
 
+import { searchData } from '@src/contants/data';
+import useDebouncedCallback from '@src/hooks/useDebouncedCallback';
+
 interface SidebarContentProps {}
+
+interface SearchResultItem {
+  description: string;
+  descriptionBefore: string;
+  descriptionAfter: string;
+  link: string;
+}
 
 const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
   const [active, setActive] = React.useState(false);
+  const [searchResults, setSearchResults] = React.useState<SearchResultItem[]>(
+    []
+  );
   const { isCollapse } = React.useContext(LayoutContext);
   const refSearchButton = React.useRef<HTMLDivElement>(null);
   const refResult = React.useRef<HTMLDivElement>(null);
@@ -38,19 +51,65 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
     return 3;
   };
 
-  // const test = () => {
-  //   const {} = useLocation();
-  // }
-
-  const onSearch = (keyword: string, level: number) => {
+  const onSearch = useDebouncedCallback((keyword: string, level: number) => {
     console.log('search: ', keyword, '-level: ', level);
-  };
+
+    const results = searchData
+      .map(dataRow => {
+        const { content, link } = dataRow;
+        let keyDescription;
+        let keyDescription_before;
+        let keyDescription_after;
+        let result,
+          keyIndexList = [];
+        let regex = new RegExp(keyword, 'gi');
+        while ((result = regex.exec(content))) {
+          keyIndexList.push(result.index);
+        }
+
+        return keyIndexList.map(keyIndex => {
+          keyDescription = content.slice(keyIndex, keyIndex + keyword.length);
+          if (keyIndex >= 70) {
+            keyDescription_before = content.slice(keyIndex - 70, keyIndex);
+            keyDescription_after = content.slice(
+              keyIndex + keyword.length,
+              keyIndex + keyword.length + 80
+            );
+          } else {
+            keyDescription_before = content.slice(0, keyIndex);
+            keyDescription_after = content.slice(
+              keyIndex + keyword.length,
+              keyIndex + keyword.length + 100
+            );
+          }
+
+          return {
+            description: keyDescription,
+            descriptionBefore: keyDescription_before,
+            descriptionAfter: keyDescription_after,
+            link,
+          };
+        });
+      })
+      .filter(arr => !!arr.length)
+      .reduce((_accumulator, currentValue, _currentIndex, _array) => {
+        return [...currentValue];
+      }, []);
+
+    return setSearchResults(results);
+  }, 800);
 
   const onChange = (evt: any) => {
     const keyword = evt.target.value;
     if (keyword !== '') {
       const level = getLevel();
-      onSearch(keyword, level);
+      return onSearch(keyword, level);
+    }
+  };
+
+  const onKeyUp = (evt: any) => {
+    if (evt.keyCode === 13) {
+      onChange(evt);
     }
   };
 
@@ -96,6 +155,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
         </div>
         <input
           onChange={onChange}
+          onKeyUp={onKeyUp}
           className='custom-input'
           type='text'
           placeholder='SEARCH'
@@ -139,7 +199,17 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
           left: ${active ? '60px' : '-318px'};
         `}
       >
-        <div className='results-container'></div>
+        <div className='results-container'>
+          {searchResults.map(
+            ({ description, descriptionBefore, descriptionAfter, link }) => (
+              <div className='search-result-item'>
+                {descriptionBefore}
+                <a href={link}>{description}</a>
+                {descriptionAfter}
+              </div>
+            )
+          )}
+        </div>
       </div>
       <div className='side-bar-nav'>
         <div>

@@ -1,4 +1,4 @@
-const searchData = [
+export const searchData = [
   {
     link: '../../welcome.html',
     content: 'Welcome to The Personalised Healthcare-Enabled Patient Journey\n'
