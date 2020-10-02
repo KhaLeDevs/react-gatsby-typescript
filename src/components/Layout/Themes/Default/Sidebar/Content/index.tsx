@@ -1,32 +1,41 @@
 import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from '@reach/router';
+import { default as onClasses } from 'classnames';
 
 import SearchIcon from '@src/images/search-icon.30da9b45.svg';
 import { LayoutContext } from '@src/components/Layout';
-import { useOnClickOutside } from "@src/hooks/useOnClickOutside"
+import { useOnClickInsideWithTarget } from '@src/hooks/useOnClickOutside';
 
-interface SidebarContentProps {
-}
+interface SidebarContentProps {}
 
-const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({
-}) => {
+const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
   const [active, setActive] = React.useState(false);
   const { isCollapse } = React.useContext(LayoutContext);
-  const ref = useOnClickOutside(() => setActive(false));
+  const refSearchButton = React.useRef<HTMLDivElement>(null);
+  const refResult = React.useRef<HTMLDivElement>(null);
+  const ref = useOnClickInsideWithTarget(
+    () => setActive(false),
+    refResult,
+    refSearchButton
+  );
 
-  const onToggleSearch = () => {
+  const onToggleSearch = (evt: any) => {
     if (isCollapse) {
       return;
     }
+    console.log('evt: ', evt.target);
 
     setActive(!active);
   };
 
   return (
-    <div className='side-bar-content'>
+    <div className='side-bar-content' ref={ref}>
       <div
-        className='d-flex align-items-center search-button'
+        ref={refSearchButton}
+        className={onClasses(`d-flex align-items-center search-button`, {
+          active,
+        })}
         css={css`
           width: 280px;
           height: 40px;
@@ -35,9 +44,9 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({
           cursor: pointer;
           transition: all 0.3s ease 0s;
         `}
-        onClick={onToggleSearch}
       >
         <div
+          onClick={onToggleSearch}
           className='custom-button d-flex align-items-center justify-content-center'
           css={css`
             width: 32px;
@@ -75,6 +84,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({
           `}
         />
         <span
+          onClick={onToggleSearch}
           css={css`
             width: 100%;
             font-size: 20px;
@@ -97,6 +107,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({
         `}
       />
       <div
+        ref={refResult}
         className='search-result'
         css={css`
           left: ${active ? '60px' : '-318px'};
