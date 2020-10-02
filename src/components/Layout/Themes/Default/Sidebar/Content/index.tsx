@@ -201,8 +201,11 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
       >
         <div className='results-container'>
           {searchResults.map(
-            ({ description, descriptionBefore, descriptionAfter, link }) => (
-              <div className='search-result-item'>
+            (
+              { description, descriptionBefore, descriptionAfter, link },
+              index
+            ) => (
+              <div key={index} className='search-result-item'>
                 {descriptionBefore}
                 <a href={link}>{description}</a>
                 {descriptionAfter}
