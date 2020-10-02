@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '@emotion/core';
 import { Link } from '@reach/router';
 import { default as onClasses } from 'classnames';
+import { useLocation } from '@reach/router';
 
 import SearchIcon from '@src/images/search-icon.30da9b45.svg';
 import { LayoutContext } from '@src/components/Layout';
@@ -19,14 +20,38 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
     refResult,
     refSearchButton
   );
+  const { pathname } = useLocation();
 
-  const onToggleSearch = (evt: any) => {
+  const onToggleSearch = () => {
     if (isCollapse) {
       return;
     }
-    console.log('evt: ', evt.target);
 
     setActive(!active);
+  };
+
+  const getLevel = () => {
+    console.log('pathname: ', pathname);
+    if (['/welcome'].includes(pathname)) {
+      return 1;
+    }
+    return 3;
+  };
+
+  // const test = () => {
+  //   const {} = useLocation();
+  // }
+
+  const onSearch = (keyword: string, level: number) => {
+    console.log('search: ', keyword, '-level: ', level);
+  };
+
+  const onChange = (evt: any) => {
+    const keyword = evt.target.value;
+    if (keyword !== '') {
+      const level = getLevel();
+      onSearch(keyword, level);
+    }
   };
 
   return (
@@ -70,6 +95,7 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
           />
         </div>
         <input
+          onChange={onChange}
           className='custom-input'
           type='text'
           placeholder='SEARCH'
