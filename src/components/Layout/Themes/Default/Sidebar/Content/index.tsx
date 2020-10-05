@@ -216,67 +216,123 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
         </div>
       </div>
       <div className='side-bar-nav'>
-        {sidebarItems.map(({ route, title }, index) => (
-          <div key={index} data-id={index}>
-            <div
-              className='nav-dot'
-              css={css`
-                width: 20px;
-                height: 20px;
-                background: ${pathname === route
-                  ? 'rgb(0, 102, 204)'
-                  : 'rgb(113, 198, 255)'};
-                position: absolute;
-                top: ${100 + index * 40}px;
-                left: 36px;
-                border-radius: 10px;
-                cursor: pointer;
-                z-index: 2;
-                transition: all 0.3s ease 0s;
-              `}
-            >
-              <Link to={route} />
-            </div>
-            <div
-              className='nav-menu'
-              css={css`
-                width: 100%;
-                position: absolute;
-                top: ${90 + index * 40}px;
-                transition: all 0.3s ease 0s;
-              `}
-            >
+        {sidebarItems.map(({ route, title, child }, index) => {
+          const cHeight = 70;
+          const activeIndex = sidebarItems.findIndex(
+            item => item.route === pathname
+          );
+          const pos =
+            index > activeIndex
+              ? sidebarItems[activeIndex].child.length * cHeight
+              : 0;
+          const height =
+            index === activeIndex
+              ? sidebarItems[activeIndex].child.length * cHeight
+              : 0;
+
+          return (
+            <div key={index} data-id={index}>
+              <div
+                className='nav-dot'
+                css={css`
+                  width: 20px;
+                  height: 20px;
+                  background: ${pathname === route
+                    ? 'rgb(0, 102, 204)'
+                    : 'rgb(113, 198, 255)'};
+                  position: absolute;
+                  top: ${100 + index * 40 + pos}px;
+                  left: 36px;
+                  border-radius: 10px;
+                  cursor: pointer;
+                  z-index: 2;
+                  transition: all 0.3s ease 0s;
+                `}
+              >
+                <Link to={route} />
+              </div>
               <div
                 className='nav-menu'
                 css={css`
                   width: 100%;
-                  height: 40px;
-                  background: ${pathname === route ? 'white' : 'transparent'};
-                  padding-left: 70px;
+                  position: absolute;
+                  top: ${90 + index * 40 + pos}px;
                   transition: all 0.3s ease 0s;
                 `}
               >
-                <Link
-                  className='d-flex align-items-center nav-menu-title no-underline'
-                  to={route}
+                <div
+                  className='nav-menu'
                   css={css`
-                    height: 40px;
-                    font-size: 18px;
-                    font-family: Imago;
-                    font-weight: bold;
-                    cursor: pointer;
+                    width: 100%;
+                    height: ${40 + height}px;
+                    background: ${pathname === route ? 'white' : 'transparent'};
+                    padding-left: 70px;
                     transition: all 0.3s ease 0s;
-                    color: black;
-                    text-decoration: none;
                   `}
                 >
-                  <span>{title}</span>
-                </Link>
-                <div />
+                  <Link
+                    className='d-flex align-items-center nav-menu-title no-underline'
+                    to={route}
+                    css={css`
+                      height: 40px;
+                      font-size: 18px;
+                      font-family: Imago;
+                      font-weight: bold;
+                      cursor: pointer;
+                      transition: all 0.3s ease 0s;
+                      color: black;
+                      text-decoration: none;
+                    `}
+                  >
+                    <span>{title}</span>
+                  </Link>
+                  <div>
+                    {child.map(({ name }, index) => (
+                      <Link
+                        key={index}
+                        className='d-flex align-items-center nav-submenu'
+                        to='partner/stakeholders.html'
+                        css={css`
+                          height: 70px;
+                          padding: 10px;
+                          font-size: 18px;
+                          cursor: pointer;
+                          border-bottom: 1px solid rgb(238, 238, 238);
+                          transition: all 0.2s ease 0s;
+                          font-weight: normal;
+                          color: black !important;
+                          text-decoration: none !important;
+                        `}
+                      >
+                        <span
+                          css={css`
+                            width: 220px;
+                          `}
+                        >
+                          {name}
+                        </span>
+                        <img
+                          src={
+                            require('@src/images/nav-icon.1fa37873.svg').default
+                          }
+                          alt='nav icon'
+                          css={css`
+                            width: 22px;
+                            height: 22px;
+                            position: absolute;
+                            right: 5px;
+                            cursor: pointer;
+                            transition: all 0.2s ease 0s;
+                          `}
+                        />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
