@@ -11,6 +11,7 @@ import { useOnClickInsideWithTarget } from '@src/hooks/useOnClickOutside';
 import useDebouncedCallback from '@src/hooks/useDebouncedCallback';
 import { sidebarItems } from '@src/contants/Sidebar';
 import { getSearchResults } from '@src/utils/search';
+import tw from 'tailwind.macro';
 
 interface SidebarContentProps {}
 
@@ -75,65 +76,54 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
     <div className='side-bar-content' ref={ref}>
       <div
         ref={refSearchButton}
-        className={onClasses(`d-flex align-items-center search-button`, {
-          active,
-        })}
+        className={onClasses(
+          `d-flex align-items-center search-button cursor-pointer h-10`,
+          {
+            active,
+          }
+        )}
         css={css`
           width: 280px;
-          height: 40px;
           background: rgb(113, 198, 255);
           border-radius: 20px;
-          cursor: pointer;
           transition: all 0.3s ease 0s;
         `}
       >
         <div
           onClick={onToggleSearch}
-          className='custom-button d-flex align-items-center justify-content-center'
+          className='custom-button d-flex align-items-center justify-content-center h-8 w-8 bg-white cursor-pointer absolute ml-1'
           css={css`
-            width: 32px;
-            height: 32px;
-            background: white;
             border-radius: 16px;
-            cursor: pointer;
-            margin-left: 4px;
-            position: absolute;
           `}
         >
           <img
             src={SearchIcon}
             alt='search icon'
             css={css`
+              ${tw`mb-0`}
               width: 23px;
               margin-right: 2px;
               margin-left: 1px;
-              margin-bottom: 0;
             `}
           />
         </div>
         <input
           onChange={onChange}
           onKeyUp={onKeyUp}
-          className='custom-input'
+          className='custom-input border-0 ml-1 text-xl'
           type='text'
           placeholder='SEARCH'
           css={css`
             width: calc(100% - 42px);
-            border: 0px;
             border-radius: 20px;
             padding: 0px 15px;
             margin-left: 38px;
-            margin-right: 4px;
-            font-size: 20px;
           `}
         />
         <span
           onClick={onToggleSearch}
           css={css`
-            width: 100%;
-            font-size: 20px;
-            color: white;
-            margin-left: 48px;
+            ${tw`text-xl w-full text-white ml-12`}
             transition: all 0.3s ease 0s;
           `}
         >
@@ -142,10 +132,8 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
       </div>
       <div
         css={css`
+          ${tw`h-full bg-transparent absolute`}
           width: 60px;
-          height: 100%;
-          background: transparent;
-          position: absolute;
           left: -60px;
           z-index: 3;
         `}
@@ -190,18 +178,14 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
           return (
             <div key={index} data-id={index}>
               <div
-                className='nav-dot'
+                className='nav-dot absolute cursor-pointer w-5 h-5'
                 css={css`
-                  width: 20px;
-                  height: 20px;
                   background: ${pathname === route
                     ? 'rgb(0, 102, 204)'
                     : 'rgb(113, 198, 255)'};
-                  position: absolute;
                   top: ${100 + index * 40 + pos}px;
                   left: 36px;
                   border-radius: 10px;
-                  cursor: pointer;
                   z-index: 2;
                   transition: all 0.3s ease 0s;
                 `}
@@ -209,18 +193,15 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
                 <Link to={route} />
               </div>
               <div
-                className='nav-menu'
+                className='nav-menu absolute w-full'
                 css={css`
-                  width: 100%;
-                  position: absolute;
                   top: ${90 + index * 40 + pos}px;
                   transition: all 0.3s ease 0s;
                 `}
               >
                 <div
-                  className='nav-menu'
+                  className='nav-menu w-full'
                   css={css`
-                    width: 100%;
                     height: ${40 + height}px;
                     background: ${pathname === route ? 'white' : 'transparent'};
                     padding-left: 70px;
@@ -228,17 +209,11 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
                   `}
                 >
                   <Link
-                    className='d-flex align-items-center nav-menu-title no-underline'
+                    className='d-flex align-items-center nav-menu-title no-underline h-10 font-bold cursor-pointer text-black text-lg'
                     to={route}
                     css={css`
-                      height: 40px;
-                      font-size: 18px;
                       font-family: Imago;
-                      font-weight: bold;
-                      cursor: pointer;
                       transition: all 0.3s ease 0s;
-                      color: black;
-                      text-decoration: none;
                     `}
                   >
                     <span>{title}</span>
@@ -248,18 +223,13 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
                       {child.map(({ name }, index) => (
                         <Link
                           key={index}
-                          className='d-flex align-items-center nav-submenu'
+                          className='d-flex align-items-center nav-submenu font-normal text-black no-underline text-lg cursor-pointer'
                           to='partner/stakeholders.html'
                           css={css`
                             height: 70px;
                             padding: 10px;
-                            font-size: 18px;
-                            cursor: pointer;
                             border-bottom: 1px solid rgb(238, 238, 238);
                             transition: all 0.2s ease 0s;
-                            font-weight: normal;
-                            color: black !important;
-                            text-decoration: none !important;
                           `}
                         >
                           <span
@@ -276,11 +246,10 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
                             }
                             alt='nav icon'
                             css={css`
+                              ${tw`absolute cursor-pointer`}
                               width: 22px;
                               height: 22px;
-                              position: absolute;
                               right: 5px;
-                              cursor: pointer;
                               transition: all 0.2s ease 0s;
                             `}
                           />
