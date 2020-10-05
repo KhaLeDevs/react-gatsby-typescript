@@ -13,7 +13,7 @@ interface CustomDropdownProps {
   index: number;
 }
 
-const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
+export const CustomDropdown: React.FunctionComponent<CustomDropdownProps> = ({
   data,
 }) => {
   const [isShow, setIsShow] = React.useState(false);

@@ -13,7 +13,7 @@ export const sidebarItems: sidebarItem[] = [
     title: 'FUTURE PATIENT JOURNEY',
   },
   {
-    route: './systems-enablers/index.html',
+    route: '/systems-enablers',
     title: 'SYSTEMS ENABLERS',
   },
   {
