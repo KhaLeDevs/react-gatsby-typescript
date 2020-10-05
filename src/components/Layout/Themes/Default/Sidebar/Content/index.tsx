@@ -286,48 +286,51 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
                   >
                     <span>{title}</span>
                   </Link>
-                  <div>
-                    {child.map(({ name }, index) => (
-                      <Link
-                        key={index}
-                        className='d-flex align-items-center nav-submenu'
-                        to='partner/stakeholders.html'
-                        css={css`
-                          height: 70px;
-                          padding: 10px;
-                          font-size: 18px;
-                          cursor: pointer;
-                          border-bottom: 1px solid rgb(238, 238, 238);
-                          transition: all 0.2s ease 0s;
-                          font-weight: normal;
-                          color: black !important;
-                          text-decoration: none !important;
-                        `}
-                      >
-                        <span
+                  {pathname === route && (
+                    <div>
+                      {child.map(({ name }, index) => (
+                        <Link
+                          key={index}
+                          className='d-flex align-items-center nav-submenu'
+                          to='partner/stakeholders.html'
                           css={css`
-                            width: 220px;
+                            height: 70px;
+                            padding: 10px;
+                            font-size: 18px;
+                            cursor: pointer;
+                            border-bottom: 1px solid rgb(238, 238, 238);
+                            transition: all 0.2s ease 0s;
+                            font-weight: normal;
+                            color: black !important;
+                            text-decoration: none !important;
                           `}
                         >
-                          {name}
-                        </span>
-                        <img
-                          src={
-                            require('@src/images/nav-icon.1fa37873.svg').default
-                          }
-                          alt='nav icon'
-                          css={css`
-                            width: 22px;
-                            height: 22px;
-                            position: absolute;
-                            right: 5px;
-                            cursor: pointer;
-                            transition: all 0.2s ease 0s;
-                          `}
-                        />
-                      </Link>
-                    ))}
-                  </div>
+                          <span
+                            css={css`
+                              width: 220px;
+                            `}
+                          >
+                            {name}
+                          </span>
+                          <img
+                            src={
+                              require('@src/images/nav-icon.1fa37873.svg')
+                                .default
+                            }
+                            alt='nav icon'
+                            css={css`
+                              width: 22px;
+                              height: 22px;
+                              position: absolute;
+                              right: 5px;
+                              cursor: pointer;
+                              transition: all 0.2s ease 0s;
+                            `}
+                          />
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
