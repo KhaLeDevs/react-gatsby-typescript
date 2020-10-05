@@ -1,6 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
-import { Link } from '@reach/router';
+import { Link } from 'gatsby';
 import { default as onClasses } from 'classnames';
 import { useLocation } from '@reach/router';
 

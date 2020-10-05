@@ -17,7 +17,7 @@ export const sidebarItems: sidebarItem[] = [
     title: 'SYSTEMS ENABLERS',
   },
   {
-    route: './abbrevation.html',
+    route: '/abbreviations',
     title: 'ABBREVIATION LIST',
   },
   {
