@@ -1,5 +1,6 @@
 import React from 'react';
 import { css } from '@emotion/core';
+import { useLocation } from '@reach/router';
 
 import ArrowLeft from '@src/images/arrow-left.3689acfa.svg';
 import ArrowRight from '@src/images/arrow-right.0edc8883.svg';
@@ -8,12 +9,13 @@ import { LayoutContext } from '@src/components/Layout';
 interface TopbarProps {}
 const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
   const { isCollapse, setIsCollapse } = React.useContext(LayoutContext);
+  const { pathname } = useLocation();
 
   return (
     <div
       className='top-bar d-flex align-items-center justify-content-center'
       css={css`
-        background: rgb(0, 102, 204);
+        background: ${['/welcome'].includes(pathname) ? 'rgb(0, 102, 204)' : 'transparent'};
         height: 52px;
       `}
     >
@@ -44,7 +46,7 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
           {isCollapse ? 'Open the Navigation' : 'Collapse the Navigation'}
         </span>
       </div>
-      <span>Welcome</span>
+      {['/welcome'].includes(pathname) && <span>Welcome</span>}
     </div>
   );
 };

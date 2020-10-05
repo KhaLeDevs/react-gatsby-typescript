@@ -10,6 +10,7 @@ import { useOnClickInsideWithTarget } from '@src/hooks/useOnClickOutside';
 
 import { searchData } from '@src/contants/data';
 import useDebouncedCallback from '@src/hooks/useDebouncedCallback';
+import { sidebarItems } from '@src/contants/Sidebar';
 
 interface SidebarContentProps {}
 
@@ -215,291 +216,67 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
         </div>
       </div>
       <div className='side-bar-nav'>
-        <div>
-          <div
-            className='nav-dot'
-            css={css`
-              width: 20px;
-              height: 20px;
-              background: rgb(0, 102, 204);
-              position: absolute;
-              top: 100px;
-              left: 36px;
-              border-radius: 10px;
-              cursor: pointer;
-              z-index: 2;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <Link to='/welcome'></Link>
-          </div>
-          <div
-            className='nav-menu'
-            css={css`
-              width: 100%;
-              position: absolute;
-              top: 90px;
-              transition: all 0.3s ease 0s;
-            `}
-          >
+        {sidebarItems.map(({ route, title }, index) => (
+          <div key={index} data-id={index}>
+            <div
+              className='nav-dot'
+              css={css`
+                width: 20px;
+                height: 20px;
+                background: ${pathname === route
+                  ? 'rgb(0, 102, 204)'
+                  : 'rgb(113, 198, 255)'};
+                position: absolute;
+                top: ${100 + index * 40}px;
+                left: 36px;
+                border-radius: 10px;
+                cursor: pointer;
+                z-index: 2;
+                transition: all 0.3s ease 0s;
+              `}
+            >
+              <Link to={route} />
+            </div>
             <div
               className='nav-menu'
               css={css`
                 width: 100%;
-                height: 40px;
-                background: white;
-                padding-left: 70px;
+                position: absolute;
+                top: ${90 + index * 40}px;
                 transition: all 0.3s ease 0s;
               `}
             >
-              <Link
-                className='d-flex align-items-center nav-menu-title no-underline'
-                to='/welcome'
+              <div
+                className='nav-menu'
                 css={css`
+                  width: 100%;
                   height: 40px;
-                  font-size: 18px;
-                  font-family: Imago;
-                  font-weight: bold;
-                  cursor: pointer;
+                  background: ${pathname === route ? 'white' : 'transparent'};
+                  padding-left: 70px;
                   transition: all 0.3s ease 0s;
-                  color: black;
-                  text-decoration: none;
                 `}
               >
-                <span>WELCOME</span>
-              </Link>
-              <div></div>
+                <Link
+                  className='d-flex align-items-center nav-menu-title no-underline'
+                  to={route}
+                  css={css`
+                    height: 40px;
+                    font-size: 18px;
+                    font-family: Imago;
+                    font-weight: bold;
+                    cursor: pointer;
+                    transition: all 0.3s ease 0s;
+                    color: black;
+                    text-decoration: none;
+                  `}
+                >
+                  <span>{title}</span>
+                </Link>
+                <div />
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div
-            className='nav-dot'
-            css={css`
-              width: 20px;
-              height: 20px;
-              background: rgb(113, 198, 255);
-              position: absolute;
-              top: 140px;
-              left: 36px;
-              border-radius: 10px;
-              cursor: pointer;
-              z-index: 2;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <Link to='./future-patient-journey/index.html'></Link>
-          </div>
-          <div
-            className='nav-menu'
-            css={css`
-              width: 100%;
-              position: absolute;
-              top: 130px;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <div
-              className='nav-menu'
-              css={css`
-                width: 100%;
-                height: 40px;
-                background: transparent;
-                padding-left: 70px;
-                transition: all 0.3s ease 0s;
-              `}
-            >
-              <Link
-                className='d-flex align-items-center nav-menu-title no-underline'
-                to='./future-patient-journey/index.html'
-                css={css`
-                  height: 40px;
-                  font-size: 18px;
-                  font-family: Imago;
-                  font-weight: normal;
-                  cursor: pointer;
-                  transition: all 0.3s ease 0s;
-                  color: black;
-                  text-decoration: none;
-                `}
-              >
-                <span>FUTURE PATIENT JOURNEY</span>
-              </Link>
-              <div></div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className='nav-dot'
-            css={css`
-              width: 20px;
-              height: 20px;
-              background: rgb(113, 198, 255);
-              position: absolute;
-              top: 180px;
-              left: 36px;
-              border-radius: 10px;
-              cursor: pointer;
-              z-index: 2;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <Link to='./systems-enablers/index.html'></Link>
-          </div>
-          <div
-            className='nav-menu'
-            css={css`
-              width: 100%;
-              position: absolute;
-              top: 170px;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <div
-              className='nav-menu'
-              css={css`
-                width: 100%;
-                height: 40px;
-                background: transparent;
-                padding-left: 70px;
-                transition: all 0.3s ease 0s;
-              `}
-            >
-              <Link
-                className='d-flex align-items-center nav-menu-title no-underline'
-                to='./systems-enablers/index.html'
-                css={css`
-                  height: 40px;
-                  font-size: 18px;
-                  font-family: Imago;
-                  font-weight: normal;
-                  cursor: pointer;
-                  transition: all 0.3s ease 0s;
-                  color: black;
-                  text-decoration: none;
-                `}
-              >
-                <span>SYSTEMS ENABLERS</span>
-              </Link>
-              <div></div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className='nav-dot'
-            css={css`
-              width: 20px;
-              height: 20px;
-              background: rgb(113, 198, 255);
-              position: absolute;
-              top: 220px;
-              left: 36px;
-              border-radius: 10px;
-              cursor: pointer;
-              z-index: 2;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <Link to='./abbrevation.html'></Link>
-          </div>
-          <div
-            className='nav-menu'
-            css={css`
-              width: 100%;
-              position: absolute;
-              top: 210px;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <div
-              className='nav-menu'
-              css={css`
-                width: 100%;
-                height: 40px;
-                background: transparent;
-                padding-left: 70px;
-                transition: all 0.3s ease 0s;
-              `}
-            >
-              <Link
-                className='d-flex align-items-center nav-menu-title no-underline'
-                to='./abbrevation.html'
-                css={css`
-                  height: 40px;
-                  font-size: 18px;
-                  font-family: Imago;
-                  font-weight: normal;
-                  cursor: pointer;
-                  transition: all 0.3s ease 0s;
-                  color: black;
-                  text-decoration: none;
-                `}
-              >
-                <span>ABBREVIATION LIST</span>
-              </Link>
-              <div></div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div
-            className='nav-dot'
-            css={css`
-              width: 20px;
-              height: 20px;
-              background: rgb(113, 198, 255);
-              position: absolute;
-              top: 260px;
-              left: 36px;
-              border-radius: 10px;
-              cursor: pointer;
-              z-index: 2;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <Link to='./acknowledgements.html'></Link>
-          </div>
-          <div
-            className='nav-menu'
-            css={css`
-              width: 100%;
-              position: absolute;
-              top: 250px;
-              transition: all 0.3s ease 0s;
-            `}
-          >
-            <div
-              className='nav-menu'
-              css={css`
-                width: 100%;
-                height: 40px;
-                background: transparent;
-                padding-left: 70px;
-                transition: all 0.3s ease 0s;
-              `}
-            >
-              <Link
-                className='d-flex align-items-center nav-menu-title no-underline'
-                to='./acknowledgements.html'
-                css={css`
-                  height: 40px;
-                  font-size: 18px;
-                  font-family: Imago;
-                  font-weight: normal;
-                  cursor: pointer;
-                  transition: all 0.3s ease 0s;
-                  color: black;
-                  text-decoration: none;
-                `}
-              >
-                <span>ACKNOWLEDGEMENTS</span>
-              </Link>
-              <div />
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

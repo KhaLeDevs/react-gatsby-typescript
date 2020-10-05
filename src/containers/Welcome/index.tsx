@@ -194,6 +194,7 @@ const Welcome: React.FunctionComponent<WelcomeProps> = ({}) => {
                 css={css`
                   width: 40%;
                 `}
+                onClick={() => setModalClass('hidden')}
               >
                 <span
                   css={css`
