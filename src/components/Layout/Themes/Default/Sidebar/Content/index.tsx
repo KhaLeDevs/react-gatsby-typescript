@@ -8,9 +8,9 @@ import SearchIcon from '@src/images/search-icon.30da9b45.svg';
 import { LayoutContext } from '@src/components/Layout';
 import { useOnClickInsideWithTarget } from '@src/hooks/useOnClickOutside';
 
-import { searchData } from '@src/contants/data';
 import useDebouncedCallback from '@src/hooks/useDebouncedCallback';
 import { sidebarItems } from '@src/contants/Sidebar';
+import { getSearchResults } from '@src/utils/search';
 
 interface SidebarContentProps {}
 
@@ -53,51 +53,8 @@ const SidebarContent: React.FunctionComponent<SidebarContentProps> = ({}) => {
   };
 
   const onSearch = useDebouncedCallback((keyword: string, level: number) => {
-    console.log('search: ', keyword, '-level: ', level);
-
-    const results = searchData
-      .map(dataRow => {
-        const { content, link } = dataRow;
-        let keyDescription;
-        let keyDescription_before;
-        let keyDescription_after;
-        let result,
-          keyIndexList = [];
-        let regex = new RegExp(keyword, 'gi');
-        while ((result = regex.exec(content))) {
-          keyIndexList.push(result.index);
-        }
-
-        return keyIndexList.map(keyIndex => {
-          keyDescription = content.slice(keyIndex, keyIndex + keyword.length);
-          if (keyIndex >= 70) {
-            keyDescription_before = content.slice(keyIndex - 70, keyIndex);
-            keyDescription_after = content.slice(
-              keyIndex + keyword.length,
-              keyIndex + keyword.length + 80
-            );
-          } else {
-            keyDescription_before = content.slice(0, keyIndex);
-            keyDescription_after = content.slice(
-              keyIndex + keyword.length,
-              keyIndex + keyword.length + 100
-            );
-          }
-
-          return {
-            description: keyDescription,
-            descriptionBefore: keyDescription_before,
-            descriptionAfter: keyDescription_after,
-            link,
-          };
-        });
-      })
-      .filter(arr => !!arr.length)
-      .reduce((_accumulator, currentValue, _currentIndex, _array) => {
-        return [...currentValue];
-      }, []);
-
-    return setSearchResults(results);
+    const results = getSearchResults(keyword, level);
+    return results && setSearchResults(results);
   }, 800);
 
   const onChange = (evt: any) => {
