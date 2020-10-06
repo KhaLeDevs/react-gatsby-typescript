@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import Logo from '@src/images/logo.2c6efde3.svg';
 import { LayoutContext } from '@src/components/Layout';
+import { css } from '@emotion/core';
 
 interface HeaderProps {
   siteTitle?: string;
@@ -23,10 +24,25 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => {
         </Link>
       </div>
 
+      <div className='flex'>
+        <h1
+          className='text-xl'
+          css={css`
+            color: #0e6fcf;
+          `}
+        >
+          Personalized Healthcare-Enabled Patient Journey
+        </h1>
+      </div>
+
       <div className='flex text-sm leading-5'>
         <div className='relative'>
           <button className='transition-colors duration-100 ease-in-out text-gray-600 py-2 pr-4 pl-10 block w-full appearance-none leading-normal border border-transparent rounded-lg focus:outline-none text-left select-none truncate focus:bg-white focus:border-gray-300 bg-gray-200'>
-            <input className='border-0 bg-transparent outline-none' type='text' placeholder='Search' />
+            <input
+              className='border-0 bg-transparent outline-none'
+              type='text'
+              placeholder='Search'
+            />
           </button>
           <div className='pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center'>
             <svg
