@@ -1,10 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'gatsby';
 
-import { ReactComponent as SidebarIcon } from '@src/images/sidebar-icon.1dc3573e.svg';
 import Logo from '@src/images/logo.2c6efde3.svg';
-import { css } from '@emotion/core';
 import { LayoutContext } from '@src/components/Layout';
 
 interface HeaderProps {
@@ -15,38 +12,35 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => {
   const { isCollapse, setIsCollapse } = React.useContext(LayoutContext);
 
   return (
-    <div className='header d-flex align-items-center justify-content-between'>
-      <SidebarIcon
-        className='menu-icon'
-        onClick={() => setIsCollapse(!isCollapse)}
-      />
-      <Link to='/welcome'>
-        <span className='title'>
-          Personalised Healthcare-Enabled Patient Journey
-        </span>
-        <span className='mobile-title'>PHC Systems Map</span>
-      </Link>
-      <Link to='/welcome'>
-        <img
-          css={css`
-            margin-bottom: 0;
-            max-width: inherit;
-          `}
-          className='logo'
-          src={Logo}
-          alt='logo'
-        />
-      </Link>
-    </div>
+    <header className='relative z-10 border-b border-gray-200 bg-white flex items-center justify-between px-4 py-4 sm:px-6 lg:px-8'>
+      <div className='md:flex items-center'>
+        <Link
+          to='/'
+          className='block'
+          onClick={() => setIsCollapse(!isCollapse)}
+        >
+          <img className='h-10 w-auto' src={Logo} alt='Logo' />
+        </Link>
+      </div>
+
+      <div className='flex text-sm leading-5'>
+        <div className='relative'>
+          <button className='transition-colors duration-100 ease-in-out text-gray-600 py-2 pr-4 pl-10 block w-full appearance-none leading-normal border border-transparent rounded-lg focus:outline-none text-left select-none truncate focus:bg-white focus:border-gray-300 bg-gray-200'>
+            Search
+          </button>
+          <div className='pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center'>
+            <svg
+              className='fill-current pointer-events-none text-gray-600 w-4 h-4'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 20 20'
+            >
+              <path d='M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z'></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </header>
   );
-};
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
 };
 
 export default Header;

@@ -42,9 +42,6 @@ const Topbar: React.FunctionComponent<TopbarProps> = ({}) => {
             `}
           />
         </div>
-        <span>
-          {isCollapse ? 'Open the Navigation' : 'Collapse the Navigation'}
-        </span>
       </div>
       {['/welcome'].includes(pathname) && <span>Welcome</span>}
     </div>

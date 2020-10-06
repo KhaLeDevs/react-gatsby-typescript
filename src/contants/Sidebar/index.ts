@@ -1,47 +1,72 @@
-interface IChild {
-  route: string;
-  name: string;
-}
+import { ReactElement } from 'react';
 
 interface sidebarItem {
-  route: string;
-  title: string;
-  child: IChild[];
+  path: string;
+  name: string;
+  icon?: ReactElement | null;
+  routes: sidebarItem[];
 }
 
 export const sidebarItems: sidebarItem[] = [
   {
-    route: '/welcome',
-    title: 'WELCOME',
-    child: []
-  },
-  {
-    route: './future-patient-journey/index.html',
-    title: 'FUTURE PATIENT JOURNEY',
-    child: []
-  },
-  {
-    route: '/systems-enablers',
-    title: 'SYSTEMS ENABLERS',
-    child: [
+    path: '/patient-journey',
+    name: 'Patient Journey',
+    icon: null,
+    routes: [
       {
-        route: '',
-        name: 'Partners'
+        name: 'Early Diagnosis',
+        path: '/early-diagnosis',
+        routes: []
       },
       {
-        route: '',
-        name: 'Roche Initiatives'
-      }
-    ]
+        name: 'Care Plan',
+        path: '/care-plan',
+        routes: []
+      },
+      {
+        name: 'Intervensions',
+        path: '/intervensions',
+        routes: []
+      },
+      {
+        name: 'Remote Monitoring & Care',
+        path: '/remote-monitoring-care',
+        routes: []
+      },
+    ],
   },
   {
-    route: '/abbreviations',
-    title: 'ABBREVIATION LIST',
-    child: []
+    path: '/phc-ecosystem',
+    name: 'PHC Ecosystem',
+    icon: null,
+    routes: [
+      {
+        name: 'Policy',
+        path: '/policy',
+        routes: [],
+      },
+      {
+        name: 'Partners & Collaborators',
+        path: '/partners-collaborators',
+        routes: []
+      },
+      {
+        name: 'Roche Initiatives',
+        path: '/roche-initiatives',
+        routes: []
+      },
+    ],
   },
   {
-    route: '/acknowledgements',
-    title: 'ACKNOWLEDGEMENTS',
-    child: []
+    path: '/lorem-ipsum',
+    name: 'Lorem Ipsum',
+    icon: null,
+    routes: [],
+  },
+  {
+    path: '/acknowledgements',
+    name: 'Acknowledgements',
+    icon: null,
+    routes: [],
   },
 ];

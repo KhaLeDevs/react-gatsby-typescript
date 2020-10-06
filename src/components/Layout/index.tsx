@@ -7,7 +7,7 @@
 
 import React, { Dispatch, SetStateAction } from 'react';
 
-import './styles/layout.css';
+// import './styles/layout.css';
 import './styles/tailwind.css';
 import './index.scss';
 import Theme from '@src/components/Layout/Themes';
@@ -28,7 +28,7 @@ export const LayoutContext = React.createContext<LayoutContextOptions>(
 );
 
 const useLayout = ({}: UseLayoutOptions): LayoutContextOptions => {
-  const [isCollapse, setIsCollapse] = React.useState(false);
+  const [isCollapse, setIsCollapse] = React.useState(true);
 
   return {
     isCollapse,
