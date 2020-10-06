@@ -12,16 +12,16 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({}) => {
 
   return (
     <>
-      <nav className='flex fixed h-full text-gray-700 border-b border-gray-200 z-10'>
+      <nav className='flex fixed pb-16 h-full text-gray-700 border-b border-gray-200 z-10'>
         <div
-          className='flex py-3 relative z-50 w-8'
+          className='flex flex-col justify-between py-3 relative z-50 w-8'
           css={css`
             background: #2e2e2e;
           `}
         >
           <button
             type='button'
-            className='flex h-1 px-2 items-center text-gray-500 focus:outline-none'
+            className='h-4 px-2 items-center text-gray-500 focus:outline-none'
             aria-label='Open site navigation'
             onClick={() => setIsCollapse(!isCollapse)}
           >
@@ -33,16 +33,43 @@ const Navbar: React.FunctionComponent<NavbarProps> = ({}) => {
               <path d='M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z'></path>
             </svg>
           </button>
+
+          <button
+            type='button'
+            className='h-4 px-2 items-center text-gray-500 focus:outline-none'
+            aria-label='About'
+            onClick={() => setIsCollapse(!isCollapse)}
+          >
+            <svg
+              className='w-4 h-4'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              viewBox='0 0 24 24'
+              stroke='currentColor'
+            >
+              <path
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+                d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
+              />
+            </svg>
+          </button>
         </div>
         <div
-          className={`transform top-0 left-0 pl-8 pt-16 pb-8 w-72 fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30 ${
+          className={`pt-16 pb-8 transform top-0 left-0 pl-8 w-72 fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30 ${
             isCollapse ? '-translate-x-64' : 'translate-x-0'
           }`}
-          css={css`margin-top: 1px;`}
+          css={css`
+            margin-top: 1px;
+          `}
         >
-          <div className='h-full py-4' css={css`
-            background-color: #525659;
-          `}>
+          <div
+            className='h-full py-4'
+            css={css`
+              background-color: #525659;
+            `}
+          >
             <div className='h-full overflow-auto'>
               <ul>
                 <li className='py-2'>
