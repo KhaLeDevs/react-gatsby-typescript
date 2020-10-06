@@ -26,7 +26,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({}) => {
       <div className='flex text-sm leading-5'>
         <div className='relative'>
           <button className='transition-colors duration-100 ease-in-out text-gray-600 py-2 pr-4 pl-10 block w-full appearance-none leading-normal border border-transparent rounded-lg focus:outline-none text-left select-none truncate focus:bg-white focus:border-gray-300 bg-gray-200'>
-            Search
+            <input className='border-0 bg-transparent outline-none' type='text' placeholder='Search' />
           </button>
           <div className='pointer-events-none absolute inset-y-0 left-0 pl-4 flex items-center'>
             <svg
