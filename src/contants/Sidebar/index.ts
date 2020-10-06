@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-interface sidebarItem {
+export interface sidebarItem {
   path: string;
   name: string;
   icon?: ReactElement | null;
@@ -16,22 +16,22 @@ export const sidebarItems: sidebarItem[] = [
       {
         name: 'Early Diagnosis',
         path: '/early-diagnosis',
-        routes: []
+        routes: [],
       },
       {
         name: 'Care Plan',
         path: '/care-plan',
-        routes: []
+        routes: [],
       },
       {
         name: 'Intervensions',
         path: '/intervensions',
-        routes: []
+        routes: [],
       },
       {
         name: 'Remote Monitoring & Care',
         path: '/remote-monitoring-care',
-        routes: []
+        routes: [],
       },
     ],
   },
@@ -43,17 +43,65 @@ export const sidebarItems: sidebarItem[] = [
       {
         name: 'Policy',
         path: '/policy',
-        routes: [],
+        routes: [
+          {
+            name: 'Data Policy',
+            path: 'data-policy',
+            routes: [],
+          },
+          {
+            name: 'Regulatory Policy',
+            path: 'regulatory-policy',
+            routes: [],
+          },
+          {
+            name: 'Ecosystem Policy',
+            path: 'ecosystem-policy',
+            routes: [],
+          },
+        ],
       },
       {
         name: 'Partners & Collaborators',
         path: '/partners-collaborators',
-        routes: []
+        routes: [
+          {
+            name: 'External Stakeholders',
+            path: 'external-stakeholders',
+            routes: [],
+          },
+          {
+            name: 'External Partners',
+            path: 'external-partners',
+            routes: [],
+          },
+          {
+            name: 'Collaboration Models',
+            path: 'collaboration-models',
+            routes: [],
+          },
+        ],
       },
       {
         name: 'Roche Initiatives',
         path: '/roche-initiatives',
-        routes: []
+        routes: [
+          {
+            name: 'Lorem Ipsum',
+            path: '/lorem-ipsum',
+            routes: [],
+          },
+          {
+            name: 'Lorem Ipsum',
+            path: '/lorem-ipsum',
+            routes: [],
+          },
+          {
+            name: 'Lorem Ipsum',
+            path: '/lorem-ipsum',
+            routes: [],
+          },
+        ],
       },
     ],
   },

@@ -25,7 +25,6 @@ const ThemeDefault: React.FunctionComponent<ThemeDefaultProps> = ({
                 alt='background'
               />
             </div>
-            <Topbar />
             <PageContent>{children}</PageContent>
           </div>
         </main>
