@@ -5,19 +5,18 @@
 
 /* width */
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
   height: 2px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #edf2f7;
+  background: transparent;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #cbd5e0;
-  border: 3px solid #edf2f7;
 }
 
 /* Handle on hover */
